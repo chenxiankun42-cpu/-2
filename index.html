@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Frame 14</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="artboard" aria-label="Frame 14 SVG 预览">
+      <object data="assets/frame-14.svg" type="image/svg+xml">
+        此浏览器无法显示 SVG。
+      </object>
+      <section class="food-carousel" aria-label="滚动注释">
+        <div class="food-mask"></div>
+        <div class="food-row top">
+          <div class="food-track">
+            <div class="food-crop"><object data="assets/frame-14.svg" type="image/svg+xml"></object></div>
+            <div class="food-crop"><object data="assets/frame-14.svg" type="image/svg+xml"></object></div>
+          </div>
+        </div>
+        <div class="food-row bottom">
+          <div class="food-track">
+            <div class="food-crop"><object data="assets/frame-14.svg" type="image/svg+xml"></object></div>
+            <div class="food-crop"><object data="assets/frame-14.svg" type="image/svg+xml"></object></div>
+          </div>
+        </div>
+      </section>
+      <div class="choice-mask" aria-hidden="true"></div>
+      <button class="choice-trigger" type="button" aria-label="选择随便吃点">
+        <img class="choice-art" src="assets/choice-left.png" alt="" />
+      </button>
+      <button class="choice-trigger middle is-active" type="button" aria-label="选择正在纠结">
+        <img class="choice-art" src="assets/choice-middle.png" alt="" />
+      </button>
+      <button class="choice-trigger right" type="button" aria-label="选择整点好的">
+        <img class="choice-art" src="assets/choice-right.png" alt="" />
+      </button>
+      <img class="selected-frame" src="assets/frame-15.png" alt="已选择随便吃点" />
+      <img class="selected-group" src="assets/group-10.svg" alt="随便吃点（已选中）" />
+      <img class="right-selected-screen" src="assets/right-choice-reference.jpg" alt="整点好的（已选中）" />
+      <button class="help-trigger" type="button" aria-label="帮我选"></button>
+      <object class="result-screen" data="assets/frame-17.svg" type="image/svg+xml" aria-label="选择结果"></object>
+      <button class="share-trigger" type="button" aria-label="分享"></button>
+      <button class="reselect-trigger" type="button" aria-label="重选"></button>
+      <section class="reselect-panel" aria-label="重新选择">
+        <h2 class="reselect-title">再试试<br />还是换点别的</h2>
+        <div class="reselect-options">
+          <button class="reselect-option" type="button">随便<br />吃点</button>
+          <button class="reselect-option is-active" type="button">正在<br />纠结</button>
+          <button class="reselect-option" type="button">整点<br />好的</button>
+        </div>
+        <button class="reselect-confirm" type="button"><span class="retry-count">8</span>重新选</button>
+        <p class="retry-note">快点选好吃饭吧，还有机会哦</p>
+      </section>
+      <img class="new-food-screen" src="assets/new-food.jpg" alt="新的美食推荐" />
+      <span class="new-retry-count" aria-label="剩余重选次数">6</span>
+      <img class="loading-screen" src="assets/loading.jpg" alt="正在生成推荐" />
+      <section class="share-sheet" aria-label="分享选项">
+        <div class="share-card"><object data="assets/frame-17.svg" type="image/svg+xml" aria-label="当前推荐卡片"></object></div>
+        <button class="close-share" type="button" aria-label="关闭分享">×</button>
+        <div class="share-actions">
+          <button class="share-action" type="button"><span>☘</span>分享好友</button>
+          <button class="share-action" type="button"><span>⇩</span>保存本地</button>
+        </div>
+      </section>
+      <button class="back-trigger" type="button" aria-label="返回上一页"></button>
+    </main>
+    <script src="app.js"></script>
+  </body>
+</html>

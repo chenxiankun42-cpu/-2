@@ -1,0 +1,425 @@
+* { box-sizing: border-box; }
+      html, body { min-height: 100%; margin: 0; }
+      body {
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: #ececef;
+      }
+      .artboard {
+        position: relative;
+        width: min(375px, calc(100vw - 48px));
+        aspect-ratio: 375 / 812;
+        overflow: hidden;
+        background: #f5f5f7;
+        box-shadow: 0 12px 36px rgb(0 0 0 / 18%);
+      }
+      object { display: block; width: 100%; height: 100%; }
+      .food-carousel {
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+      }
+      .food-mask {
+        position: absolute;
+        top: 12.931%;
+        left: 0;
+        width: 100%;
+        height: 28.202%;
+        background: #fff;
+      }
+      .food-row {
+        position: absolute;
+        left: 0;
+        width: 100%;
+        height: 12.562%;
+        overflow: hidden;
+      }
+      .food-row.top { top: 12.931%; }
+      .food-row.bottom { top: 28.571%; }
+      .food-track {
+        display: flex;
+        width: 200%;
+        height: 100%;
+        will-change: transform;
+      }
+      .top .food-track { animation: slide-left 9s linear infinite; }
+      .bottom .food-track { animation: slide-right 9s linear infinite; }
+      .food-crop {
+        flex: 0 0 50%;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+      }
+      .food-crop object {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 375 / 812;
+      }
+      .top .food-crop object { transform: translateY(-12.931%); }
+      .bottom .food-crop object { transform: translateY(-28.571%); }
+      @keyframes slide-left {
+        from { transform: translateX(0); }
+        to { transform: translateX(-50%); }
+      }
+      @keyframes slide-right {
+        from { transform: translateX(-50%); }
+        to { transform: translateX(0); }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .top .food-track, .bottom .food-track { animation: none; }
+      }
+      .choice-trigger {
+        position: absolute;
+        z-index: 3;
+        left: 7.813%;
+        top: 72.414%;
+        width: 25.067%;
+        height: 12.315%;
+        display: grid;
+        place-content: center;
+        gap: 6px;
+        padding: 8px 4px 6px;
+        border: 2px solid #eaeaea;
+        border-radius: 15px;
+        background: #fff;
+        cursor: pointer;
+        color: #08090c;
+        font: 700 13px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+        text-align: center;
+        overflow: hidden;
+        transition: transform 180ms ease, background-color 180ms ease, border-color 180ms ease;
+      }
+      .choice-trigger::before {
+        content: "●  ●";
+        display: block;
+        font-size: 13px;
+        letter-spacing: -2px;
+        line-height: 1;
+      }
+      .choice-trigger::after {
+        display: block;
+        white-space: pre-line;
+      }
+      .choice-trigger::after { content: "随便\A吃点"; }
+      .choice-trigger.middle::after { content: "正在\A纠结"; }
+      .choice-trigger.right::after { content: "整点\A好的"; }
+      .choice-trigger.is-active {
+        z-index: 4;
+        border-color: transparent;
+        background: transparent;
+        transform: none;
+        overflow: hidden;
+      }
+      .choice-art {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transform: translate(-50%, -50%);
+      }
+      .choice-trigger.is-active::before,
+      .choice-trigger.is-active::after { display: none; }
+      .choice-trigger.is-active .choice-art { display: block; }
+      }
+      .choice-trigger:focus-visible {
+        outline: 3px solid #08090c;
+        outline-offset: 3px;
+      }
+      .choice-trigger.middle { left: 37.867%; }
+      .choice-trigger.right { left: 67.92%; }
+      .choice-mask {
+        position: absolute;
+        z-index: 2;
+        left: 5%;
+        top: 70.94%;
+        width: 90%;
+        height: 16.01%;
+        background: #fff;
+      }
+      .selected-frame,
+      .selected-group { display: none; }
+      .artboard.is-choice-selected .selected-frame {
+        display: block;
+        position: absolute;
+        z-index: 4;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .artboard.is-choice-selected .selected-group {
+        display: block;
+        position: absolute;
+        z-index: 5;
+        left: 6.667%;
+        top: 71.059%;
+        width: 30.133%;
+        height: 15.148%;
+        pointer-events: none;
+      }
+      .right-selected-screen { display: none; }
+      .artboard.is-right-selected .right-selected-screen {
+        display: block;
+        position: absolute;
+        z-index: 7;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+      }
+      .help-trigger {
+        display: block;
+        position: absolute;
+        z-index: 6;
+        left: 7.733%;
+        top: 89.409%;
+        width: 84.8%;
+        height: 6.897%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+      .help-trigger:focus-visible {
+        outline: 3px solid #fff;
+        outline-offset: -5px;
+      }
+      .result-screen { display: none; }
+      .artboard.is-result .result-screen {
+        display: block;
+        position: absolute;
+        z-index: 7;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .loading-screen { display: none; }
+      .artboard.is-loading .loading-screen {
+        display: block;
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: fill;
+        pointer-events: none;
+      }
+      .artboard.is-loading .loading-screen { z-index: 9; }
+      .share-sheet { display: none; }
+      .artboard.is-sharing .share-sheet {
+        display: block;
+        position: absolute;
+        z-index: 10;
+        inset: 0;
+        background: rgb(0 0 0 / 78%);
+      }
+      .share-card {
+        position: absolute;
+        top: 13%;
+        left: 12%;
+        width: 76%;
+        height: 66%;
+        overflow: hidden;
+        border-radius: 28px;
+        background: #fff;
+      }
+      .share-card object {
+        width: 112%;
+        height: auto;
+        aspect-ratio: 375 / 812;
+        transform: translate(-5.3%, -10.3%);
+      }
+      .close-share {
+        position: absolute;
+        z-index: 1;
+        top: 70%;
+        left: 50%;
+        width: 38px;
+        height: 38px;
+        border: 0;
+        border-radius: 50%;
+        background: #fff;
+        color: #333;
+        font: 700 34px/34px system-ui, sans-serif;
+        transform: translateX(-50%);
+        cursor: pointer;
+      }
+      .share-actions {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 23%;
+        display: flex;
+        justify-content: center;
+        gap: 14px;
+        padding: 28px 20px 16px;
+        background: #fff;
+      }
+      .share-action {
+        width: 42%;
+        border: 0;
+        border-radius: 16px;
+        background: #f4f4f6;
+        color: #08090c;
+        font: 700 14px/1.5 system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+        cursor: pointer;
+      }
+      .share-action span {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 25px;
+        line-height: 1;
+      }
+      .share-trigger {
+        display: none;
+        position: absolute;
+        z-index: 8;
+        left: 34.667%;
+        top: 92.857%;
+        width: 60.267%;
+        height: 6.897%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+      .artboard.is-result .share-trigger { display: block; }
+      .reselect-trigger {
+        display: none;
+        position: absolute;
+        z-index: 8;
+        left: 5.067%;
+        top: 92.857%;
+        width: 27.467%;
+        height: 6.897%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+      .artboard.is-result .reselect-trigger { display: block; }
+      .artboard.is-reselecting .result-screen {
+        filter: blur(9px);
+        transform: scale(1.04);
+      }
+      .artboard.is-reselecting .share-trigger,
+      .artboard.is-reselecting .reselect-trigger { display: none; }
+      .reselect-panel { display: none; }
+      .artboard.is-reselecting .reselect-panel {
+        display: block;
+        position: absolute;
+        z-index: 9;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        height: 57%;
+        padding: 36px 22px 22px;
+        border-radius: 34px 34px 0 0;
+        background: rgb(255 255 255 / 96%);
+      }
+      .reselect-title {
+        margin: 0 0 28px;
+        color: #08090c;
+        font: 800 29px/1.18 system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+        text-align: center;
+      }
+      .reselect-options {
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+      }
+      .reselect-option {
+        width: 31%;
+        height: 112px;
+        border: 2px solid #e5e5e7;
+        border-radius: 19px;
+        background: #fff;
+        color: #08090c;
+        font: 700 15px/1.45 system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      }
+      .reselect-option::before {
+        content: "●  ●";
+        display: block;
+        margin-bottom: 10px;
+        font-size: 15px;
+        letter-spacing: -2px;
+      }
+      .reselect-option.is-active {
+        border-color: #ffc20a;
+        background: #ffe62c;
+      }
+      .reselect-confirm {
+        width: 100%;
+        height: 58px;
+        margin-top: 22px;
+        border: 0;
+        border-radius: 14px;
+        background: #08090c;
+        color: #fff;
+        font: 800 18px/1 system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+      }
+      .retry-count {
+        display: inline-grid;
+        width: 28px;
+        height: 28px;
+        margin-right: 8px;
+        border-radius: 50%;
+        place-items: center;
+        background: #ffe000;
+        color: #08090c;
+        font-size: 14px;
+      }
+      .retry-note {
+        margin: 14px 0 0;
+        color: #9b9b9b;
+        font: 14px/1.4 system-ui, -apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif;
+        text-align: center;
+      }
+      .new-food-screen,
+      .new-retry-count { display: none; }
+      .artboard.is-new-food .new-food-screen {
+        display: block;
+        position: absolute;
+        z-index: 7;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .artboard.is-new-food .new-retry-count {
+        display: grid;
+        position: absolute;
+        z-index: 8;
+        top: 84.4%;
+        left: 10.3%;
+        width: 25px;
+        height: 25px;
+        place-items: center;
+        border-radius: 50%;
+        background: #ffe000;
+        color: #08090c;
+        font: 800 13px/1 system-ui, sans-serif;
+      }
+      .back-trigger {
+        display: none;
+        position: absolute;
+        z-index: 8;
+        left: 0;
+        top: 2%;
+        width: 15%;
+        height: 12%;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        cursor: pointer;
+      }
+      .back-trigger:focus-visible {
+        outline: 3px solid #08090c;
+        outline-offset: -5px;
+      }
+      .artboard.is-result .back-trigger,
+      .artboard.is-loading .back-trigger,
+      .artboard.is-sharing .back-trigger { display: block; }
